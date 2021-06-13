@@ -1,0 +1,26 @@
+{
+  "name": "task-project-manager-server",
+  "version": "1.0.0",
+  "description": "Server for task-project-manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/index"
+  },
+  "author": "Angel Exequiel Soto",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.10.1",
+    "mongoose": "^5.7.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "repository": {
+    "private": true
+  }
+}
