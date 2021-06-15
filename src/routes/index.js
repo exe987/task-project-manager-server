@@ -15,8 +15,8 @@ router.get('/projects', projectControllers.getProjects);
 router.delete('/projects/:id', projectControllers.deleteProject);
 
 router.post('/tasks', validateTask, taskControllers.createTask);
-router.get('/tasks');
-router.put('/tasks/:id');
-router.delete('/tasks/:id');
+router.get('/tasks/:id', taskControllers.getTasks);
+router.put('/tasks/:id', taskControllers.changeStateTask);
+router.delete('/tasks/:id', taskControllers.deleteTask);
 
 module.exports = router;

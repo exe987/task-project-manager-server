@@ -22,9 +22,12 @@ const getTasks = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
+  let data = await req.params;
+  const { id } = data;
 
   try {
-    const tasks = await taskRepo.getTasksDb();
+    const tasks = await taskRepo.getTasksDb(id);
+
     res.status(200).json({ tasks });
   } catch (err) {
     console.log(err);
@@ -48,8 +51,32 @@ const deleteTask = async (req, res) => {
   }
 };
 
+const changeStateTask = async (req, res) => {
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  let data = await req.body;
+
+  let task = {};
+
+  task.name = data.name;
+  task.id_project = data.id_project;
+  task.done = !data.done;
+
+  try {
+    const taskUpdated = await taskRepo.changeStateTaskDb(data._id, task);
+
+    res.status(200).json({ taskUpdated });
+  } catch (err) {
+    console.log(err);
+    return res.status(500);
+  }
+};
+
 module.exports = {
   createTask,
   getTasks,
   deleteTask,
+  changeStateTask,
 };

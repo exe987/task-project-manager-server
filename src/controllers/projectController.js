@@ -9,8 +9,8 @@ const createProject = async (req, res) => {
 
   let project = await req.body;
   try {
-    await projectRepo.createProjectDb(project);
-    res.status(200).json({ msg: 'Project created' });
+    const response = await projectRepo.createProjectDb(project);
+    res.status(200).json({ id: response, msg: 'Project created' });
   } catch (err) {
     console.log(err);
     return res.status(500);

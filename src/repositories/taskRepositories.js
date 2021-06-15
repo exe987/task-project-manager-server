@@ -9,9 +9,9 @@ const createTaskDb = async (task) => {
   }
 };
 
-const getTasksDb = async () => {
+const getTasksDb = async (id_project) => {
   try {
-    const tasks = await Task.find();
+    const tasks = await Task.find({ id_project });
     return tasks;
   } catch (error) {
     throw error;
@@ -26,8 +26,20 @@ const deleteTaskDb = async (id) => {
   }
 };
 
+const changeStateTaskDb = async (id, taskUpdated) => {
+  try {
+    const task = await Task.findOneAndUpdate({ _id: id }, taskUpdated, {
+      new: true,
+    });
+    return task;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   createTaskDb,
   getTasksDb,
   deleteTaskDb,
+  changeStateTaskDb,
 };

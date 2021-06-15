@@ -4,6 +4,7 @@ const createProjectDb = async (project) => {
   try {
     const projectdb = new Project(project);
     await projectdb.save();
+    return projectdb._id
   } catch (error) {
     throw error;
   }
